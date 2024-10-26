@@ -3,7 +3,7 @@ from database.database import Person
 from handle.Person.models import PersonCreate
 
 
-class ServidorServices:
+class PersonServices:
 
     def add(self, db: Session, obj: PersonCreate):
         novo = Person(
@@ -32,6 +32,5 @@ class ServidorServices:
         db.commit()
         db.refresh(person)
 
-    def add
 
 
