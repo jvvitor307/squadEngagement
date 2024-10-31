@@ -2,10 +2,10 @@ from fastapi import APIRouter, HTTPException, Depends, status
 from sqlalchemy.orm import Session
 from typing import List
 from handle.Squad.models import SquadCreate, SquadView
-from handle.Squad.services import SquadServices as service
+from handle.Squad.services import squad_service as service
 from database.utils import get_db
 
-router = APIRouter(prefix="/app/squad", tags=["Servidores"])
+router = APIRouter(prefix="/app/squad", tags=["Squad"])
 
 exception_nao_encontado = HTTPException(
     status_code=status.HTTP_404_NOT_FOUND, detail="Não encontrado"

@@ -6,16 +6,14 @@ from handle.Squad.models import SquadCreate
 class SquadServices:
 
     def add(self, db: Session, obj: SquadCreate):
-        try:
-            novo = Squad(
-                squad_name = obj.squad_name
-            )
-            db.add(novo)
-            db.commit()
-            db.refresh(novo)
-            return novo
-        except:
-            db.rollback()
+        novo = Squad(
+            squad_name = obj.squad_name
+        )
+        db.add(novo)
+        db.commit()
+        db.refresh(novo)
+        return novo
+
 
     def get_by_id(self, db: Session, id: int):
         return db.query(Squad).filter(Squad.id == id).first()
@@ -41,7 +39,7 @@ class SquadServices:
             db.rollback()
 
 
-
+squad_service = SquadServices()
 
 
 

@@ -5,23 +5,21 @@ from handle.Person.models import PersonCreate
 
 class PersonServices:
 
-    def add(self, db: Session, obj: PersonCreate):
-        try:
-            novo = Person(
-                first_name=obj.first_name,
-                last_name=obj.last_name,
-            )
-            db.add(novo)
-            db.commit()
-            db.refresh(novo)
-            return novo
-        except:
-            db.rollback()
+    def add(self, db: Session, person_data: PersonCreate):
+        print("-")
+        novo = Person(
+            first_name=person_data.first_name,
+            last_name=person_data.last_name)
+        db.add(novo)
+        db.commit()
+        db.refresh(novo)
+        return novo
+
 
     def get_by_id(self, db: Session, id: int):
         return db.query(Person).filter(Person.id == id).first()
 
-    def get_all(self, db: Session, id: int):
+    def get_all(self, db: Session):
         return db.query(Person).all()
 
     def update(self, db: Session, person: Person, PersonModel: PersonCreate):
@@ -42,4 +40,4 @@ class PersonServices:
             db.rollback()
 
 
-
+person_service = PersonServices()
